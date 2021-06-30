@@ -1,6 +1,6 @@
 # Github-Asana action
 
-This action integrates asana with github.
+This action integrates Asana with GitHub.
 
 ### Prerequisites
 
@@ -16,6 +16,10 @@ This action integrates asana with github.
 ### `trigger-phrase`
 
 **Required** Prefix before the task i.e ASANA TASK: https://app.asana.com/1/2/3/. For special characters in the trigger phrase refer to the examples.
+
+### `target-section`
+
+**Optional** If provided, attempts to move the task into the given section for each of the projects the task is associated with.
 
 ### `task-comment`
 

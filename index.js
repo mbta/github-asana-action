@@ -8,21 +8,23 @@ async function asanaOperations(asanaPAT, targetSection, taskId, taskComment) {
 
         const task = await client.tasks.findById(taskId);
 
-        task.projects.forEach(async (project) => {
-            let foundTargetSection = await client.sections
-                .findByProject(project.gid)
-                .then((sections) =>
-                    sections.find((section) => section.name === targetSection),
-                );
-            if (foundTargetSection) {
-                await client.sections.addTask(foundTargetSection.gid, {
-                    task: taskId,
-                });
-                core.info(`Moved to: ${project.name}/${targetSection}`);
-            } else {
-                core.warning(`Asana section ${targetSection} not found.`);
-            }
-        });
+        if (targetSection) {
+            task.projects.forEach(async (project) => {
+                let foundTargetSection = await client.sections
+                    .findByProject(project.gid)
+                    .then((sections) =>
+                        sections.find((section) => section.name === targetSection),
+                    );
+                if (foundTargetSection) {
+                    await client.sections.addTask(foundTargetSection.gid, {
+                        task: taskId,
+                    });
+                    core.info(`Moved to: ${project.name}/${targetSection}`);
+                } else {
+                    core.warning(`Asana section ${targetSection} not found.`);
+                }
+            });
+        }
 
         if (taskComment) {
             await client.tasks.addComment(taskId, {
