@@ -1,12 +1,11 @@
-
 # Github-Asana action
 
 This action integrates asana with github.
 
 ### Prerequisites
 
-- Asana account with the permission on the particular project you want to integrate with.
-- Must provide the task url in the PR description.
+-   Asana account with the permission on the particular project you want to integrate with.
+-   Must provide the task url in the PR description.
 
 ## Inputs
 
@@ -22,18 +21,9 @@ This action integrates asana with github.
 
 **Optional** If any comment is provided, the action will add a comment to the specified asana task with the text & pull request link.
 
-### `targets`
-
-**Optional** JSON array of objects having project and section where to move current task. Move task only if it exists in target project. e.g 
-```yaml
-targets: '[{"project": "Backlog", "section": "Development Done"}, {"project": "Current Sprint", "section": "In Review"}]'
-```
-if you don't want to move task omit `targets`.
-
 ## Sample PR Description
-``
-**Asana Task:** [Task Name](https://app.asana.com/0/1/2)
-``
+
+`**Asana Task:** [Task Name](https://app.asana.com/0/1/2)`
 
 ## Examples
 
@@ -42,10 +32,10 @@ if you don't want to move task omit `targets`.
 ```yaml
 uses: insurify/github-asana-action@v1.0.1
 with:
-  asana-pat: 'Your PAT'
-  task-comment: 'View Pull Request Here: '
-  trigger-phrase: 'Asana Task:'
-  targets: '[{"project": "Backlog", "section": "Development Done"}, {"project": "Current Sprint", "section": "In Review"}]'
+    asana-pat: "Your PAT"
+    task-comment: "View Pull Request Here: "
+    trigger-phrase: "Asana Task:"
+    targets: '[{"project": "Backlog", "section": "Development Done"}, {"project": "Current Sprint", "section": "In Review"}]'
 ```
 
 #### With special characters:
@@ -53,8 +43,8 @@ with:
 ```yaml
 uses: insurify/github-asana-action@v1.0.1
 with:
-  asana-pat: 'Your PAT'
-  task-comment: 'View Pull Request Here: '
-  trigger-phrase: "\\*\\*Asana Task:\\*\\*"
-  targets: '[{"project": "Backlog", "section": "Development Done"}, {"project": "Current Sprint", "section": "In Review"}]'
+    asana-pat: "Your PAT"
+    task-comment: "View Pull Request Here: "
+    trigger-phrase: "\\*\\*Asana Task:\\*\\*"
+    targets: '[{"project": "Backlog", "section": "Development Done"}, {"project": "Current Sprint", "section": "In Review"}]'
 ```
