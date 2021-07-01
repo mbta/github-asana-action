@@ -34,21 +34,21 @@ This action integrates Asana with GitHub.
 #### Without special characters:
 
 ```yaml
-uses: insurify/github-asana-action@v1.0.1
+uses: curai/github-asana-action@v3.1.0
 with:
     asana-pat: "Your PAT"
     task-comment: "View Pull Request Here: "
     trigger-phrase: "Asana Task:"
-    targets: '[{"project": "Backlog", "section": "Development Done"}, {"project": "Current Sprint", "section": "In Review"}]'
+    target-section: "Done"
 ```
 
 #### With special characters:
 
 ```yaml
-uses: insurify/github-asana-action@v1.0.1
+uses: curai/github-asana-action@v3.1.0
 with:
     asana-pat: "Your PAT"
     task-comment: "View Pull Request Here: "
     trigger-phrase: "\\*\\*Asana Task:\\*\\*"
-    targets: '[{"project": "Backlog", "section": "Development Done"}, {"project": "Current Sprint", "section": "In Review"}]'
+    target-section: "Done"
 ```
