@@ -44,7 +44,7 @@ async function asanaOperations(asanaPAT, targetSection, taskId, taskComment, mar
             core.info(`Task ${taskId} marked as complete.`);
         }
     } catch (error) {
-        core.error(error.message);
+        core.setFailed(error.message);
     }
 }
 
