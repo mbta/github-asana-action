@@ -25,6 +25,10 @@ This action integrates Asana with GitHub.
 
 **Optional** If any comment is provided, the action will add a comment to the specified Asana task with the text and also append the pull request URL.
 
+### `mark-complete`
+
+**Optional** If set to `true`, the action will mark the specified Asana task as complete.
+
 ## Sample PR Description
 
 `Asana Task: https://app.asana.com/0/1/2`
@@ -40,6 +44,7 @@ with:
     task-comment: "View Pull Request Here: "
     trigger-phrase: "Asana Task:"
     target-section: "Done"
+    mark-complete: true
 ```
 
 #### With special characters:

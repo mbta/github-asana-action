@@ -13,6 +13,9 @@ inputs:
   target-section:
     description: "Target section to move tasks into, if possible."
     required: false
+  mark-complete:
+    description: "Set to true if you would like to mark the Asana task as complete"
+    required: false
 branding:
   icon: "check-circle"
   color: "red"
