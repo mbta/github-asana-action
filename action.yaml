@@ -1,4 +1,4 @@
-name: "Asana GitHub Actions"
+name: "Asana / GitHub Integration"
 description: "Link GitHub PRs to your Asana tasks, and (optionally) automate moving tasks into sections"
 inputs:
   asana-pat:

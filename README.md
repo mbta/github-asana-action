@@ -1,4 +1,4 @@
-# Github-Asana action
+# `github-asana-action`
 
 This action integrates Asana with GitHub.
 
