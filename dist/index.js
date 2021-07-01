@@ -71110,6 +71110,10 @@ try {
             `${TRIGGER_PHRASE} *\\[(.*?)\\]\\(https:\\/\\/app.asana.com\\/(\\d+)\\/(?<project>\\d+)\\/(?<task>\\d+).*?\\)`,
             "g",
         );
+    core.info("Beginning run with:");
+    core.info(`Trigger phrase: "${TRIGGER_PHRASE}"`);
+    core.info(`Target section: ${TARGET_SECTION}`);
+    core.info(`Task comment: "${TASK_COMMENT}"`);
     let taskComment = null,
         parseAsanaURL = null;
 
@@ -71122,6 +71126,7 @@ try {
     while ((parseAsanaURL = REGEX.exec(PULL_REQUEST.body)) !== null) {
         let taskId = parseAsanaURL.groups.task;
         if (taskId) {
+            core.info(`Handling Asana task ID: ${taskId}`);
             asanaOperations(ASANA_PAT, TARGET_SECTION, taskId, taskComment);
         } else {
             core.info(
@@ -71130,7 +71135,7 @@ try {
         }
     }
 } catch (error) {
-    core.error(error.message);
+    core.setFailed(error.message);
 }
 
 })();
