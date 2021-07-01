@@ -1,0 +1,21 @@
+name: "Asana GitHub Actions"
+description: "Link GitHub PRs to your Asana tasks, and (optionally) automate moving tasks into sections"
+inputs:
+  asana-pat:
+    description: "Asana Public Access Token"
+    required: true
+  trigger-phrase:
+    description: "Prefix before the task i.e ASANA TASK: https://app.asana.com/1/2/3"
+    required: true
+  task-comment:
+    description: "If provided, this will be added as a comment (with the pull request link) to the Asana task"
+    required: false
+  target-section:
+    description: "Target section to move tasks into, if possible."
+    required: false
+branding:
+  icon: "check-circle"
+  color: "red"
+runs:
+  using: "node12"
+  main: "dist/index.js"
