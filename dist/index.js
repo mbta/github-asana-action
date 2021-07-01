@@ -71067,7 +71067,9 @@ const asana = __nccwpck_require__(3565);
 
 async function asanaOperations(asanaPAT, targetSection, taskId, taskComment) {
     try {
-        const client = asana.Client.create().useAccessToken(asanaPAT);
+        const client = asana.Client.create({
+            defaultHeaders: { "Asana-Enable": "new_user_task_lists" },
+        }).useAccessToken(asanaPAT);
 
         const task = await client.tasks.findById(taskId);
 
@@ -71076,13 +71078,15 @@ async function asanaOperations(asanaPAT, targetSection, taskId, taskComment) {
                 let foundTargetSection = await client.sections
                     .findByProject(project.gid)
                     .then((sections) =>
-                        sections.find((section) => section.name === targetSection),
+                        sections.find(
+                            (section) => section.name === targetSection,
+                        ),
                     );
                 if (foundTargetSection) {
                     await client.sections.addTask(foundTargetSection.gid, {
                         task: taskId,
                     });
-                    core.info(`Moved to: ${project.name}/${targetSection}`);
+                    core.info(`Moved task ${taskId} to: ${project.name}/${targetSection}`);
                 } else {
                     core.warning(`Asana section ${targetSection} not found.`);
                 }
@@ -71093,7 +71097,7 @@ async function asanaOperations(asanaPAT, targetSection, taskId, taskComment) {
             await client.tasks.addComment(taskId, {
                 text: taskComment,
             });
-            core.info("Added the pull request link to the Asana task.");
+            core.info(`Added PR link to task ${taskId}.`);
         }
     } catch (error) {
         core.error(error.message);
