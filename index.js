@@ -56,7 +56,7 @@ try {
         MARK_COMPLETE = core.getInput("mark-complete"),
         PULL_REQUEST = github.context.payload.pull_request,
         REGEX = new RegExp(
-            `${TRIGGER_PHRASE}(\\s)*https:\\/\\/app.asana.com\\/(\\d+)\\/(?<project>\\d+)\\/(?<task>\\d+).*?`,
+            `${TRIGGER_PHRASE}(\\s)*(?:\\[.*\\]\\()?https:\\/\\/app.asana.com\\/(\\d+)\\/(?<project>\\d+)\\/(?<task>\\d+).*?`,
             "g",
         );
     core.info("Beginning run with:");
