@@ -2,7 +2,13 @@ const core = require("@actions/core");
 const github = require("@actions/github");
 const asana = require("asana");
 
-async function asanaOperations(asanaPAT, targetSection, taskId, taskComment, markComplete) {
+async function asanaOperations(
+    asanaPAT,
+    targetSection,
+    taskId,
+    taskComment,
+    markComplete,
+) {
     try {
         const client = asana.Client.create({
             defaultHeaders: { "Asana-Enable": "new_user_task_lists" },
@@ -23,7 +29,9 @@ async function asanaOperations(asanaPAT, targetSection, taskId, taskComment, mar
                     await client.sections.addTask(foundTargetSection.gid, {
                         task: taskId,
                     });
-                    core.info(`Moved task ${taskId} to: ${project.name}/${targetSection}`);
+                    core.info(
+                        `Moved task ${taskId} to: ${project.name}/${targetSection}`,
+                    );
                 } else {
                     core.warning(`Asana section ${targetSection} not found.`);
                 }
@@ -78,7 +86,13 @@ try {
         let taskId = parseAsanaURL.groups.task;
         if (taskId) {
             core.info(`Handling Asana task ID: ${taskId}`);
-            asanaOperations(ASANA_PAT, TARGET_SECTION, taskId, taskComment, MARK_COMPLETE);
+            asanaOperations(
+                ASANA_PAT,
+                TARGET_SECTION,
+                taskId,
+                taskComment,
+                MARK_COMPLETE,
+            );
         } else {
             core.info(
                 `Invalid Asana task URL after trigger phrase ${TRIGGER_PHRASE}`,
