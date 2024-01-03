@@ -16,6 +16,7 @@ inputs:
   mark-complete:
     description: "Set to true if you would like to mark the Asana task as complete"
     required: false
+    default: false
 branding:
   icon: "check-circle"
   color: "red"
