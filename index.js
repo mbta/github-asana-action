@@ -71,7 +71,7 @@ try {
     core.info(`Trigger phrase: "${TRIGGER_PHRASE}"`);
     core.info(`Target section: ${TARGET_SECTION}`);
     core.info(`Task comment: "${TASK_COMMENT}"`);
-    core.info(`Mark complete: "${TASK_COMMENT}"`);
+    core.info(`Mark complete: "${MARK_COMPLETE}"`);
     core.info(`PR body: ${PULL_REQUEST.body}`);
     let taskComment = null,
         parseAsanaURL = null;
