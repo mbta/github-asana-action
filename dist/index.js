@@ -98485,7 +98485,7 @@ try {
         TARGET_SECTION = core.getInput("target-section"),
         TRIGGER_PHRASE = core.getInput("trigger-phrase"),
         TASK_COMMENT = core.getInput("task-comment"),
-        MARK_COMPLETE = core.getInput("mark-complete"),
+        MARK_COMPLETE = core.getBooleanInput("mark-complete"),
         PULL_REQUEST = github.context.payload.pull_request,
         REGEX = new RegExp(
             `${TRIGGER_PHRASE}(\\s)*(?:\\[.*\\]\\()?https:\\/\\/app.asana.com\\/(\\d+)\\/(?<project>\\d+)\\/(?<task>\\d+).*?`,
@@ -98495,7 +98495,7 @@ try {
     core.info(`Trigger phrase: "${TRIGGER_PHRASE}"`);
     core.info(`Target section: ${TARGET_SECTION}`);
     core.info(`Task comment: "${TASK_COMMENT}"`);
-    core.info(`Mark complete: "${TASK_COMMENT}"`);
+    core.info(`Mark complete: "${MARK_COMPLETE}"`);
     core.info(`PR body: ${PULL_REQUEST.body}`);
     let taskComment = null,
         parseAsanaURL = null;
