@@ -38,7 +38,7 @@ This action integrates Asana with GitHub.
 #### Without special characters:
 
 ```yaml
-uses: curai/github-asana-action@v3.1.0
+uses: mbta/github-asana-action@v4.3.0
 with:
     asana-pat: "Your PAT"
     task-comment: "View Pull Request Here: "
@@ -50,10 +50,31 @@ with:
 #### With special characters:
 
 ```yaml
-uses: curai/github-asana-action@v3.1.0
+uses: mbta/github-asana-action@v4.3.0
 with:
     asana-pat: "Your PAT"
     task-comment: "View Pull Request Here: "
     trigger-phrase: "\\*\\*Asana Task:\\*\\*"
     target-section: "Done"
 ```
+
+# Development
+
+## Requirements
+### node
+Installing [asdf with asdf-nodejs plugin](https://github.com/asdf-vm/asdf-nodejs) is one option
+
+### [yarn](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable)
+After installing node, run `npm install -g yarn`
+
+Finally, run `yarn` in the base of the repository to fetch the dependencies defined in package.json/yarn.lock.
+
+## Formatting
+You can format index.js by running `yarn format`
+
+## Building a release
+On your branch,
+* Bump the version in package.json
+* Run `yarn build` and commit the resulting files in `dist/`
+
+After merge to main, your release should be available as `v<version>`
