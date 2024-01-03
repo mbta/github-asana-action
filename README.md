@@ -73,8 +73,18 @@ Finally, run `yarn` in the base of the repository to fetch the dependencies defi
 You can format index.js by running `yarn format`
 
 ## Building a release
+We use vercel/ncc to build this action into a distribution. See [the Github Actions Docs](https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action#commit-tag-and-push-your-action-to-github) for more information.
+
 On your branch,
 * Bump the version in package.json
-* Run `yarn build` and commit the resulting files in `dist/`
+* Run `yarn build`
+* Commit the resulting files in `dist/`
 
-After merge to main, your release should be available as `v<version>`
+After merging to main,
+* Add a tag on the main branch
+```
+git tag -a -m "Adds support for link titles" v<version>
+git push --follow-tags
+```
+
+After merge to main and pushing the tag, your release should be available as `v<version>`
