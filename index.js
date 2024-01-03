@@ -61,7 +61,7 @@ try {
         TARGET_SECTION = core.getInput("target-section"),
         TRIGGER_PHRASE = core.getInput("trigger-phrase"),
         TASK_COMMENT = core.getInput("task-comment"),
-        MARK_COMPLETE = core.getInput("mark-complete"),
+        MARK_COMPLETE = core.getBooleanInput("mark-complete"),
         PULL_REQUEST = github.context.payload.pull_request,
         REGEX = new RegExp(
             `${TRIGGER_PHRASE}(\\s)*(?:\\[.*\\]\\()?https:\\/\\/app.asana.com\\/(\\d+)\\/(?<project>\\d+)\\/(?<task>\\d+).*?`,
