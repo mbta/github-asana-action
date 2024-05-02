@@ -98426,6 +98426,13 @@ const core = __nccwpck_require__(2186);
 const github = __nccwpck_require__(5438);
 const asana = __nccwpck_require__(3565);
 
+/**
+ * @param {string} asanaPAT The Asana "Personal Access Token" (PAT) used to access the Asana API.
+ * @param {any} taskId The ID of the Asana Task to act on.
+ * @param {string | null} targetSection Optional name of the Asana Board Section to move the {@link taskId Asana Task} to.
+ * @param {string | null} taskComment Optional comment to add to the {@link taskId Asana Task}
+ * @param {boolean} markComplete Whether to mark the {@link taskId Asana Task} as completed.
+ */
 async function asanaOperations(
     asanaPAT,
     targetSection,

@@ -2,6 +2,13 @@ const core = require("@actions/core");
 const github = require("@actions/github");
 const asana = require("asana");
 
+/**
+ * @param {string} asanaPAT The Asana "Personal Access Token" (PAT) used to access the Asana API.
+ * @param {any} taskId The ID of the Asana Task to act on.
+ * @param {string | null} targetSection Optional name of the Asana Board Section to move the {@link taskId Asana Task} to.
+ * @param {string | null} taskComment Optional comment to add to the {@link taskId Asana Task}
+ * @param {boolean} markComplete Whether to mark the {@link taskId Asana Task} as completed.
+ */
 async function asanaOperations(
     asanaPAT,
     targetSection,
