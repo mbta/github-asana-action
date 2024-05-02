@@ -1,0 +1,31 @@
+name: "check"
+on: [push, pull_request]
+
+jobs:
+  assert-formatted:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: |
+          npm install -g yarn
+          yarn
+          yarn format
+      - name: Assert no changes from `yarn format`
+        run: git diff --exit-code HEAD --
+
+  no-build-changes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install -g yarn
+      - run: yarn
+      - run: yarn build
+      - name: Assert no changes from `yarn build`
+        run: git diff --exit-code HEAD --
+
