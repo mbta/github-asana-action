@@ -98497,7 +98497,7 @@ try {
     core.info(`Task comment: "${TASK_COMMENT}"`);
     core.info(`Mark complete: "${MARK_COMPLETE}"`);
     core.info(`PR body: ${PULL_REQUEST.body}`);
-    let taskComment = null
+    let taskComment = null;
 
     if (!ASANA_PAT) {
         throw { message: "Asana PAT not found!" };
@@ -98509,7 +98509,7 @@ try {
     const foundAsanaURLs = [...(PULL_REQUEST?.body?.matchAll(REGEX) || [])];
 
     if (foundAsanaURLs.length === 0) {
-        core.debug("0 Asana URLs found matching the `trigger-phrase`.")
+        core.debug("0 Asana URLs found matching the `trigger-phrase`.");
     }
 
     for (const parseAsanaURL of foundAsanaURLs) {
