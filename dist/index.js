@@ -98483,7 +98483,14 @@ async function asanaOperations(
             core.info(`Task ${taskId} marked as complete.`);
         }
     } catch (error) {
-        core.setFailed(error.message);
+        if (typeof error === "string") {
+            error = new Error(error);
+        }
+        if (error instanceof Error) {
+            core.setFailed(error.message);
+        } else {
+            core.setFailed(`Unknown error: ${error}`);
+        }
     }
 }
 
@@ -98503,14 +98510,14 @@ try {
     core.info(`Target section: ${TARGET_SECTION}`);
     core.info(`Task comment: "${TASK_COMMENT}"`);
     core.info(`Mark complete: "${MARK_COMPLETE}"`);
-    core.info(`PR body: ${PULL_REQUEST.body}`);
+    core.info(`PR body: ${PULL_REQUEST?.body}`);
     let taskComment = null;
 
     if (!ASANA_PAT) {
         throw { message: "Asana PAT not found!" };
     }
     if (TASK_COMMENT) {
-        taskComment = `${TASK_COMMENT} ${PULL_REQUEST.html_url}`;
+        taskComment = `${TASK_COMMENT} ${PULL_REQUEST?.html_url}`;
     }
 
     const foundAsanaURLs = [...(PULL_REQUEST?.body?.matchAll(REGEX) || [])];
@@ -98520,7 +98527,7 @@ try {
     }
 
     for (const parseAsanaURL of foundAsanaURLs) {
-        let taskId = parseAsanaURL.groups.task;
+        let taskId = parseAsanaURL?.groups?.task;
         if (taskId) {
             core.info(`Handling Asana task ID: ${taskId}`);
             asanaOperations(
@@ -98537,7 +98544,14 @@ try {
         }
     }
 } catch (error) {
-    core.setFailed(error.message);
+    if (typeof error === "string") {
+        error = new Error(error);
+    }
+    if (error instanceof Error) {
+        core.setFailed(error.message);
+    } else {
+        core.setFailed(`Unknown error: ${error}`);
+    }
 }
 
 })();
